@@ -12,7 +12,9 @@ public class App {
         char opcao = ' ';
         do {
             try {
-
+                menuPrincipal();
+                
+                
                 menuCadastro();
                 opcao = in.next().charAt(0);
                 switch (opcao) {
@@ -63,4 +65,15 @@ public class App {
         System.out.print(
                 "1 - Cadastrar aluno\n2 - Cadastrar Coordenador\n3 - Cadastrar Empresa\n0 - Encerrar\nDigite a opção: ");
     }
+
+    public static void menuLogin(){
+        System.out.println("Logar como:");
+        System.out.println("1 - Aluno\n2 - Coordenador\n3 - Empresa\n0 - Sair\nDigite a opção: ");
+    }
+
+    public static void menuPrincipal(){
+        System.out.println("MENU PRINCIPAL");
+        System.out.println("1 - Cadastrar\n2 - Logar\n0 - Sair\nDigite a opção: ");
+    }
+        
 }
