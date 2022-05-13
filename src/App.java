@@ -10,7 +10,6 @@ public class App {
         String nome, email, descricao, area;
         int id;
         char opcao = ' ';
-
         do {
             try {
 
