@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class App {
+    
     public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         LinkedList<Aluno> listaAlunos = new LinkedList<Aluno>();
@@ -13,9 +14,49 @@ public class App {
         do {
             try {
                 menuPrincipal();
+                opcao = in.next().charAt(0);
+                switch(opcao){
+                    case 1:
+                    cadastro(in, listaAlunos, listaEmpresa, listaCoordenador);
+                    break;
+
+                    case 2: 
+                    login(in, listaAlunos, listaEmpresa, listaCoordenador);
+                    break;
+
+                }
+
                 
                 
-                menuCadastro();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+
+            }
+        } while (opcao != '0');
+    }
+
+    public static void menuCadastro() {
+        System.out.print(
+                "1 - Cadastrar aluno\n2 - Cadastrar Coordenador\n3 - Cadastrar Empresa\n0 - Encerrar\nDigite a opção: ");
+    }
+
+    public static void menuLogin(){
+        System.out.println("Logar como:");
+        System.out.println("1 - Aluno\n2 - Coordenador\n3 - Empresa\n0 - Sair\nDigite a opção: ");
+    }
+
+    public static void menuPrincipal(){
+        System.out.println("MENU PRINCIPAL");
+        System.out.println("1 - Cadastrar\n2 - Logar\n0 - Sair\nDigite a opção: ");
+    }
+        
+    public static void cadastro(Scanner in, LinkedList<Aluno> listaAlunos, LinkedList<Empresa> listaEmpresa, LinkedList<Coordenador> listaCoordenador){
+        String nome, email, descricao, area;
+        int id;
+        char opcao;
+
+        do{
+        menuCadastro();
                 opcao = in.next().charAt(0);
                 switch (opcao) {
                     case '1':
@@ -54,26 +95,11 @@ public class App {
                     default:
                         System.out.println("Opção inválida!");
                 }
-            } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
-
-            }
-        } while (opcao != '0');
+         }while(opcao!=0);
     }
 
-    public static void menuCadastro() {
-        System.out.print(
-                "1 - Cadastrar aluno\n2 - Cadastrar Coordenador\n3 - Cadastrar Empresa\n0 - Encerrar\nDigite a opção: ");
-    }
-
-    public static void menuLogin(){
-        System.out.println("Logar como:");
-        System.out.println("1 - Aluno\n2 - Coordenador\n3 - Empresa\n0 - Sair\nDigite a opção: ");
-    }
-
-    public static void menuPrincipal(){
-        System.out.println("MENU PRINCIPAL");
-        System.out.println("1 - Cadastrar\n2 - Logar\n0 - Sair\nDigite a opção: ");
-    }
+    public static void login(Scanner in, LinkedList<Aluno> listaAlunos, LinkedList<Empresa> listaEmpresa, LinkedList<Coordenador> listaCoordenador){
         
+    }
+
 }
