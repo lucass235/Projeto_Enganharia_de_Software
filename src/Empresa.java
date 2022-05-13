@@ -1,13 +1,14 @@
 public class Empresa {
-  
+
   private boolean isRecrutando;
   private String nome;
   private String descricao;
+  public int id;
 
-  public Empresa(boolean isRecrutando, String nome, String descricao) {
-    this.isRecrutando = isRecrutando;
+  public Empresa(String nome, String descricao, int id) {
     this.nome = nome;
     this.descricao = descricao;
+    this.id = id;
   }
 
   public boolean isRecrutando() {
@@ -34,5 +35,4 @@ public class Empresa {
     this.descricao = descricao;
   }
 
-  
 }

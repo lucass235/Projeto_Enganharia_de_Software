@@ -1,4 +1,4 @@
-abstract class Aluno extends Pessoa {
+class Aluno extends Pessoa {
 
   private boolean isEstagiando;
 
@@ -13,5 +13,5 @@ abstract class Aluno extends Pessoa {
   public void setEstagiando(boolean estagiando) {
     this.isEstagiando = estagiando;
   }
-  
+
 }

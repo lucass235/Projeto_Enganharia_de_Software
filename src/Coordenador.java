@@ -2,8 +2,9 @@ public class Coordenador extends Pessoa {
 
   private String area;
 
-  public Coordenador(int id, String nome, String email) {
+  public Coordenador(int id, String nome, String email, String area) {
     super(id, nome, email);
+    this.area = area;
   }
 
   public String getArea() {
@@ -13,6 +14,5 @@ public class Coordenador extends Pessoa {
   public void setArea(String area) {
     this.area = area;
   }
-  
-  
+
 }
