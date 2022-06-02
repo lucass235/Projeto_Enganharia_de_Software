@@ -1,50 +1,58 @@
 package com.losporocas.estagiagil.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "empresas") 
 public class Empresa {
-	 private boolean isRecrutando;
-	 private String nome;
-	 private String descricao;
+	
+	@Column
+	private boolean isRecrutando;
+	@Column
+	private String nome;
+	@Column
+	private String descricao;
 	 
-	 @Id
-	 public int id;
+	@Id
+	@NotNull
+	public int id;
 
-	 protected Empresa() {
-	 }
-	 
-	 public Empresa(String nome, String descricao, int id) {
-	   this.nome = nome;
-	   this.descricao = descricao;
-	   this.id = id;
-	 }
+	protected Empresa() {
+	}
 
-	 public boolean isRecrutando() {
-	   return isRecrutando;
-	 }
+	public Empresa(String nome, String descricao, int id) {
+		this.nome = nome;
+		this.descricao = descricao;
+	this.id = id;
+	}
 
-	 public void setRecrutando(boolean isRecrutando) {
-	   this.isRecrutando = isRecrutando;
-	 }
+	public boolean isRecrutando() {
+		return isRecrutando;
+	}
 
-	 public String getNome() {
-	   return nome;
-	 }
+	public void setRecrutando(boolean isRecrutando) {
+		this.isRecrutando = isRecrutando;
+	}
 
-	 public void setNome(String nome) {
-	   this.nome = nome;
-	 }
+	public String getNome() {
+	  return nome;
+	}
 
-	 public String getDescricao() {
-	   return descricao;
-	 }
+	public void setNome(String nome) {
+	  this.nome = nome;
+	}
 
-	 public void setDescricao(String descricao) {
-	   this.descricao = descricao;
-	 }
+	public String getDescricao() {
+	  return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+	  this.descricao = descricao;
+	}
 
 }

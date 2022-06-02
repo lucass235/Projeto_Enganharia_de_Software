@@ -1,14 +1,20 @@
 package com.losporocas.estagiagil.model;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import com.sun.istack.NotNull;
 
 @MappedSuperclass
 public abstract class Pessoa {
 	
 	@Id
+	@NotNull
 	private int id;
+	@Column
 	private String nome;
+	@Column
 	private String email;
 
 	protected Pessoa() {
