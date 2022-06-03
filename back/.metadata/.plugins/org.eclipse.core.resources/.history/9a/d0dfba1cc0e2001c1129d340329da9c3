@@ -28,6 +28,7 @@ public class Vaga {
 	
 	@Column
 	@NotNull
+	@ManyToOne
 	@JoinColumn(name = "empresa_nome")
 	private String empresa;
 

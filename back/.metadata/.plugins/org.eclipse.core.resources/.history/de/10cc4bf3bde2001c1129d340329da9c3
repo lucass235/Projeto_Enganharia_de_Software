@@ -1,11 +1,8 @@
 package com.losporocas.estagiagil.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -24,10 +21,6 @@ public class Empresa {
 	@Id
 	@NotNull
 	public int id;
-	
-	@OneToMany
-	
-	List<Vaga> vagas;
 
 	protected Empresa() {
 	}
@@ -35,7 +28,7 @@ public class Empresa {
 	public Empresa(String nome, String descricao, int id) {
 		this.nome = nome;
 		this.descricao = descricao;
-		this.id = id;
+	this.id = id;
 	}
 
 	public boolean isRecrutando() {

@@ -28,8 +28,9 @@ public class Vaga {
 	
 	@Column
 	@NotNull
-	@JoinColumn(name = "empresa_nome")
-	private String empresa;
+	@ManyToOne
+	@JoinColumn(name = "coordenador_id")
+	private String empresa_nome;
 
 	
 	protected Vaga() {
