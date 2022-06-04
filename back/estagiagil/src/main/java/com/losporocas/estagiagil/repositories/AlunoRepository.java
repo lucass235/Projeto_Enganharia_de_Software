@@ -6,4 +6,6 @@ import com.losporocas.estagiagil.model.Aluno;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
+	public Aluno findByMatricula(String matricula);
+	
 }

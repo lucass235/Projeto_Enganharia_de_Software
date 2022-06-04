@@ -1,0 +1,42 @@
+package com.losporocas.estagiagil.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.losporocas.estagiagil.dto.AlunoDTO;
+import com.losporocas.estagiagil.model.Aluno;
+import com.losporocas.estagiagil.model.Coordenador;
+import com.losporocas.estagiagil.repositories.CoordenadorRepository;
+
+@RestController
+@RequestMapping(value = "/coordenador")
+public class CoordenadorController {
+
+	@Autowired
+	private CoordenadorRepository repository;
+	
+	@GetMapping(value = "/{matricula}")
+	public List<Aluno> findAll(@PathVariable String matricula){
+		Coordenador result = repository.findByMatricula(matricula);
+		result.getAlunos().stream().map(this::buildAlunoDTO);				
+		return result.getAlunos();
+	}
+	
+	private AlunoDTO buildAlunoDTO(Aluno aluno) {
+		AlunoDTO a = new AlunoDTO();
+		a.setMatricula(aluno.getMatricula());
+		a.setEmail(aluno.getEmail());
+		a.setNome(aluno.getNome());
+		a.setStatusAluno(aluno.getStatusAluno());
+		a.setPeriodo(aluno.getPeriodo());
+		a.setEstagiando(aluno.isEstagiando());
+		return a;
+	}
+	
+	
+}

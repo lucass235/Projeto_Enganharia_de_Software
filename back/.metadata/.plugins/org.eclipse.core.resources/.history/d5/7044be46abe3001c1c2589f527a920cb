@@ -1,0 +1,42 @@
+package com.losporocas.estagiagil.model;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import com.sun.istack.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@MappedSuperclass
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@SuperBuilder
+public abstract class Pessoa {
+	
+	@Id
+	@NotNull
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	@NotNull
+	@Column(unique=true)
+	private String matricula;
+	@Column
+	private String nome;
+	@Column
+	private String email;
+
+
+}

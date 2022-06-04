@@ -2,7 +2,6 @@ package com.losporocas.estagiagil.controllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +23,12 @@ public class AlunoController {
 		List<Aluno> result = repository.findAll();
 		return result;
 	}
-	
-	@GetMapping(value = "/{id}")
-	public Aluno findById(@PathVariable int id){
-		Aluno result = repository.findById((long) id).get();
+
+	@GetMapping(value = "/{matricula}")
+	public Aluno findByMatricula(@PathVariable String matricula){
+		Aluno result = repository.findByMatricula(matricula);
 		return result;
 	}
+	
+	
 }

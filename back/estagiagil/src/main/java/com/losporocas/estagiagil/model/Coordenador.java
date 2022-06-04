@@ -2,11 +2,11 @@ package com.losporocas.estagiagil.model;
 
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 
 @Entity
@@ -17,11 +17,15 @@ public class Coordenador extends Pessoa{
 	private String area;
 	
 	@Column
-	@OneToMany
-	List<Aluno> alunos;
-	
-	public Coordenador(int id, String nome, String email, String area) {
-		super(id, nome, email);
+	@OneToMany (mappedBy = "coordenador")
+	private List<Aluno> alunos;
+
+	public Coordenador() {
+		super();
+	}
+
+	public Coordenador(String area) {
+		super();
 		this.area = area;
 	}
 
@@ -32,5 +36,15 @@ public class Coordenador extends Pessoa{
 	public void setArea(String area) {
 		this.area = area;
 	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+	
+	
 
 }

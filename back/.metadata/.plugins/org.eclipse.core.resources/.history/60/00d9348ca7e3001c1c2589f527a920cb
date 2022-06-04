@@ -1,0 +1,40 @@
+package com.losporocas.estagiagil.model;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table (name = "coordenadores")
+public class Coordenador extends Pessoa{
+	
+	@Column
+	private String area;
+	
+	@Column
+	@OneToMany
+	List<Aluno> alunos;
+	
+	public Coordenador() {
+		
+	}
+	
+	public Coordenador(Long id, String nome, String email, String area) {
+		super(id, nome, email);
+		this.area = area;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+}

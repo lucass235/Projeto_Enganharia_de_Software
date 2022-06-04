@@ -1,10 +1,12 @@
 package com.losporocas.estagiagil.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "alunos") 
@@ -15,19 +17,24 @@ public class Aluno extends Pessoa{
 	@Column
 	private int periodo;
 	@Column
-	public boolean estagiando;
+	private boolean estagiando;
 
 	@ManyToOne
 	@JoinColumn(name = "coordenador_id")
-	Coordenador coordenador;
-	
-	public Aluno(int id, String nome, String email, int periodo, String statusAluno, boolean estagiando) {
-		super(id, nome, email);
-		this.estagiando = estagiando;
-		this.periodo = periodo;
-		this.statusAluno = statusAluno;
+	private Coordenador coordenador;
+
+	public Aluno() {
+		super();
 	}
-	
+
+	public Aluno(String statusAluno, int periodo, boolean estagiando, Coordenador coordenador) {
+		super();
+		this.statusAluno = statusAluno;
+		this.periodo = periodo;
+		this.estagiando = estagiando;
+		this.coordenador = coordenador;
+	}
+
 	public String getStatusAluno() {
 		return statusAluno;
 	}
@@ -44,6 +51,14 @@ public class Aluno extends Pessoa{
 		this.periodo = periodo;
 	}
 
+	public boolean isEstagiando() {
+		return estagiando;
+	}
+
+	public void setEstagiando(boolean estagiando) {
+		this.estagiando = estagiando;
+	}
+
 	public Coordenador getCoordenador() {
 		return coordenador;
 	}
@@ -52,12 +67,4 @@ public class Aluno extends Pessoa{
 		this.coordenador = coordenador;
 	}
 
-	public boolean isEstagiando() {
-		return estagiando;
-	}
-
-	public void setEstagiando(boolean estagiando) {
-		this.estagiando = estagiando;
-	}
-	
 }
