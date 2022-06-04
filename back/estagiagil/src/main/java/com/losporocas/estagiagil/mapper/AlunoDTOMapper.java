@@ -25,4 +25,25 @@ public class AlunoDTOMapper {
 		a.setEstagiando(aluno.isEstagiando());
 		return a;
 	}
+	
+	public List<AlunoDTO> getAlunoDTOList(List<Aluno> alunos){
+		return alunos.stream().map(this::toAlunoDTO).toList();
+	}
+	
+	
+	
+	public AlunoDTO byMatriculaAlunoDTO(List<Aluno> alunos, String matricula){
+		AlunoDTO alDTO = new AlunoDTO();
+		Aluno al;
+		//List<AlunoDTO>alunos.stream().map(this::toAlunoDTO).toList();
+		for(int i = 0; i<alunos.size();i++) {
+			if(alunos.get(i).getMatricula().equals(matricula)) {
+				al = alunos.get(i);
+				alDTO = toAlunoDTO(al);
+			}
+		}
+		return alDTO;
+	}
+	
+	
 }

@@ -23,19 +23,31 @@ public abstract class Pessoa {
 	private String nome;
 	@Column
 	private String email;
+	@Column
+	private String senha;
 	
+	
+
 	public Pessoa() {
 		super();
 	}
 
-	public Pessoa(Long id, String matricula, String nome, String email) {
+	public Pessoa(Long id, String matricula, String nome, String email, String senha) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
+		this.senha = senha;
+	}
+		
+		public String getSenha() {
+		return senha;
 	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	public Long getId() {
 		return id;
 	}
