@@ -1,0 +1,64 @@
+package com.losporocas.estagiagil.services;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
+import com.losporocas.estagiagil.dto.AlunoDTO;
+import com.losporocas.estagiagil.dto.NewAlunoDTO;
+import com.losporocas.estagiagil.model.Aluno;
+import com.losporocas.estagiagil.repositories.AlunoRepository;
+
+@Repository
+public class AlunoService {
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+
+	
+	
+	
+	
+	public Aluno fromDTO(AlunoDTO objDto) {
+		return new Aluno(objDto.getId(), objDto.getMatricula(), objDto.getNome(), objDto.getEmail(), null, objDto.getPeriodo(), objDto.isEstagiando(), null);
+	}
+	
+	public Aluno fromDTO(NewAlunoDTO objDto) {
+		Aluno a = new Aluno(null, objDto.getMatricula(), objDto.getNome(), objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getPeriodo(), objDto.isEstagiando(), null);
+	
+		return a;
+	}
+	
+	@Transactional
+	public Aluno insert(Aluno obj) {
+		obj.setId(null);
+		obj = alunoRepository.save(obj);
+		return obj;
+	}
+	
+	public Aluno update(Aluno obj) {
+		Aluno newObj = findByMatricula(obj.getMatricula());
+		updateData(newObj, obj);
+		return alunoRepository.save(newObj);
+	}
+
+	private void updateData(Aluno newObj, Aluno obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private Aluno findByMatricula(String matricula) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

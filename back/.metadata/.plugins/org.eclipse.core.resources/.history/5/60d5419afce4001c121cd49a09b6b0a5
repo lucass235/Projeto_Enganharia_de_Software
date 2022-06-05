@@ -1,0 +1,13 @@
+package com.losporocas.estagiagil.dto;
+
+
+
+import java.io.Serializable;
+
+public class NewAlunoDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	
+	
+	
+}

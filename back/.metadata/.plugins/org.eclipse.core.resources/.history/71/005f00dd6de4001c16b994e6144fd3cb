@@ -1,0 +1,13 @@
+package com.losporocas.estagiagil.services;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
+
+public class AlunoService implements UserDetailsService{
+	
+	@Override
+	public UserDetails loadAlunoByMatricula(String matricula) throw Exception{
+		return null;
+	}
+}

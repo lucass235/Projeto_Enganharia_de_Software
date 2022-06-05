@@ -1,0 +1,5 @@
+package com.losporocas.estagiagil.config;
+
+public class WebSecurityConfig {
+
+}

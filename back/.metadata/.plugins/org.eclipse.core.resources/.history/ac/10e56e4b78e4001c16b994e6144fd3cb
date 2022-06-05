@@ -1,0 +1,22 @@
+package com.losporocas.estagiagil.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.losporocas.estagiagil.repositories.AlunoRepository;
+
+@Service
+public class AlunoService implements UserDetailsService{
+	
+	@Autowired
+	AlunoRepository alunoRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String matricula) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

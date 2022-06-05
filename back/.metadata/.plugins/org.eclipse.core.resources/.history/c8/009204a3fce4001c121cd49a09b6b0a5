@@ -1,0 +1,23 @@
+package com.losporocas.estagiagil.dto;
+
+import javax.validation.*;
+
+import java.io.Serializable;
+
+public class NewAlunoDTO extends NewPessoaDTO{
+	
+	private int periodo;
+
+	public boolean estagiando;
+	
+	public NewAlunoDTO(String matricula, String nome, String email, String senha) {
+		super(matricula, nome, email, senha);
+		// TODO Auto-generated constructor stub
+	}
+
+	private static final long serialVersionUID = 1L;
+	
+	
+	
+	
+}

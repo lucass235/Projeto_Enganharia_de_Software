@@ -20,7 +20,6 @@ public class AlunoDTOMapper {
 		a.setMatricula(aluno.getMatricula());
 		a.setEmail(aluno.getEmail());
 		a.setNome(aluno.getNome());
-		a.setStatusAluno(aluno.getStatusAluno());
 		a.setPeriodo(aluno.getPeriodo());
 		a.setEstagiando(aluno.isEstagiando());
 		return a;

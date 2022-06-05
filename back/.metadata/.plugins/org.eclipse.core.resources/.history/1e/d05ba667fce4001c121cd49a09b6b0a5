@@ -1,0 +1,5 @@
+package com.losporocas.estagiagil.dto;
+
+public class NewPessoaDTO {
+
+}

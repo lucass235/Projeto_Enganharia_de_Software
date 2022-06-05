@@ -2,8 +2,6 @@ package com.losporocas.estagiagil.dto;
 
 public class AlunoDTO extends PessoaDTO {
 
-	private String statusAluno;
-
 	private int periodo;
 
 	public boolean estagiando;
@@ -11,13 +9,11 @@ public class AlunoDTO extends PessoaDTO {
 	public AlunoDTO() {
 		super();
 	}
-
-	public String getStatusAluno() {
-		return statusAluno;
-	}
-
-	public void setStatusAluno(String statusAluno) {
-		this.statusAluno = statusAluno;
+	
+	public AlunoDTO(Long id, String matricula, String nome, String email, int periodo, boolean estagiando) {
+		super(id, matricula, nome, email);
+		this.periodo = periodo;
+		this.estagiando = estagiando;
 	}
 
 	public int getPeriodo() {

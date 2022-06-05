@@ -1,5 +1,7 @@
 package com.losporocas.estagiagil.model;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -7,13 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
 @Table(name = "alunos") 
 public class Aluno extends Pessoa{
 	
-	@Column
-	private String statusAluno;
 	@Column
 	private int periodo;
 	@Column
@@ -27,20 +29,11 @@ public class Aluno extends Pessoa{
 		super();
 	}
 
-	public Aluno(String statusAluno, int periodo, boolean estagiando, Coordenador coordenador) {
-		super();
-		this.statusAluno = statusAluno;
+	public Aluno(Long id, String matricula, String nome, String email, String senha,int periodo, boolean estagiando, Coordenador coordenador) {
+		super(id, matricula, nome, email, senha);
 		this.periodo = periodo;
 		this.estagiando = estagiando;
 		this.coordenador = coordenador;
-	}
-
-	public String getStatusAluno() {
-		return statusAluno;
-	}
-
-	public void setStatusAluno(String statusAluno) {
-		this.statusAluno = statusAluno;
 	}
 
 	public int getPeriodo() {
@@ -65,6 +58,48 @@ public class Aluno extends Pessoa{
 
 	public void setCoordenador(Coordenador coordenador) {
 		this.coordenador = coordenador;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.getSenha();
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.getMatricula();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -1,0 +1,5 @@
+package com.losporocas.estagiagil.security;
+
+public class JWTLoginFilter {
+
+}

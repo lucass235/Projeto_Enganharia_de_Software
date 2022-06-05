@@ -13,11 +13,16 @@ import com.losporocas.estagiagil.dto.AlunoDTO;
 import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.repositories.AlunoRepository;
+import com.losporocas.estagiagil.services.AlunoService;
 
 @RestController
 @RequestMapping(value = "/alunos")
 public class AlunoController {
 
+	@Autowired
+	private AlunoService as;
+	
+	//lembrar de tirar dps
 	@Autowired
 	private AlunoRepository repository;
 	
@@ -36,5 +41,6 @@ public class AlunoController {
 		return alunoDTOMapper.byMatriculaAlunoDTO(result, matricula);
 	}
 	
+
 	
 }

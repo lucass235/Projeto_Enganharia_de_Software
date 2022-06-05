@@ -1,16 +1,31 @@
 package com.losporocas.estagiagil.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public abstract class PessoaDTO {
-
-	private String matricula;
-
-	private String nome;
-
-	private String email;
 	
+	private Long id;
+	@NotEmpty
+	private String matricula;
+	@NotEmpty
+	private String nome;
+	@Email
+	private String email;
+
 	public PessoaDTO() {
 		super();
 	}
+
+	public PessoaDTO(Long id, @NotEmpty String matricula, @NotEmpty String nome, @Email String email) {
+		super();
+		this.id = id;
+		this.matricula = matricula;
+		this.nome = nome;
+		this.email = email;
+	}
+
+
 
 	public String getMatricula() {
 		return matricula;
@@ -35,4 +50,14 @@ public abstract class PessoaDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 }
