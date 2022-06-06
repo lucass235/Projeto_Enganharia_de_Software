@@ -1,11 +1,13 @@
 package com.losporocas.estagiagil.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.losporocas.estagiagil.enums.Permissoes;
 
 import javax.persistence.CollectionTable;
@@ -26,9 +28,10 @@ public class Coordenador extends Pessoa{
 	@Column
 	private String area;
 	
+	@JsonIgnore
 	@Column
 	@OneToMany (mappedBy = "coordenador")
-	private List<Aluno> alunos;
+	private List<Aluno> alunos= new ArrayList();
 	
 	public Coordenador() {
 		addPerfil(Permissoes.COORDENADOR);

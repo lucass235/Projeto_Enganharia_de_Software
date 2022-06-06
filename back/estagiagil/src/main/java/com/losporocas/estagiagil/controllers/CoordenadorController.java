@@ -2,17 +2,23 @@ package com.losporocas.estagiagil.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.losporocas.estagiagil.dto.AlunoDTO;
+import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.model.Coordenador;
@@ -20,6 +26,7 @@ import com.losporocas.estagiagil.repositories.AlunoRepository;
 import com.losporocas.estagiagil.repositories.CoordenadorRepository;
 import com.losporocas.estagiagil.services.AlunoService;
 import com.losporocas.estagiagil.services.CoordenadorService;
+import java.net.URI;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -51,10 +58,47 @@ public class CoordenadorController {
 		return ResponseEntity.ok().body(aDto);
 	}
 	
+	//@PostMapping(value = "/alunos")
+	//public Aluno novo(@RequestBody Aluno novo) {
+	//	return repository.save(novo);
+	//}
+	//@PostMapping(value = "/alunos")
+	//	public void insert(@Valid @RequestBody NewAlunoDTO novo) {
+	//		Aluno obj = alunoDTOMapper.fromDTO(novo);
+	//		repository.save(obj);
+	//	}
+	
+	//@PostMapping(value = "/alunos")
+	//public ResponseEntity<Void> insert(@RequestBody Aluno novo) {
+	//	novo = as.insert(novo);
+	//	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matricula}").buildAndExpand(novo.getMatricula()).toUri();
+	//	return ResponseEntity.created(uri).build();
+	//}
+	
 	@PostMapping(value = "/alunos")
-	public Aluno novo(@RequestBody Aluno novo) {
-		return repository.save(novo);
+	public ResponseEntity salvar(@RequestBody NewAlunoDTO novo) {
+		Aluno aluno = new Aluno();
+		aluno.setEmail(novo.getEmail());
+		aluno.setSenha(novo.getSenha());
+		aluno.setPeriodo(novo.getPeriodo());
+		aluno.setMatricula(novo.getMatricula());
+		aluno.setNome(novo.getNome());
+		try {
+			as.salvar(aluno);
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matricula}").buildAndExpand(novo.getMatricula()).toUri();
+			return ResponseEntity.created(uri).build();
+		}catch(Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+			
 	}
 	
+	@PutMapping(value = "/alunos/{matricula}")
+	public ResponseEntity<Void> update(@Valid @RequestBody AlunoDTO aDTO, @PathVariable String matricula) throws ObjectNotFoundException {
+		Aluno a = alunoDTOMapper.fromDTO(aDTO);
+		a.setMatricula(matricula); 
+		a = as.update(a);
+		return ResponseEntity.noContent().build();
+	}
 	
 }

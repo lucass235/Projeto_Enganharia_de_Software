@@ -4,7 +4,6 @@ import javax.validation.constraints.NotEmpty;
 
 public class NewAlunoDTO extends NewPessoaDTO{
 	
-	@NotEmpty
 	private int periodo;
 
 	private boolean estagiando;

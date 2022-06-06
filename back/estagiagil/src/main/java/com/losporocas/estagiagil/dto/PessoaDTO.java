@@ -5,11 +5,8 @@ import javax.validation.constraints.NotEmpty;
 
 public abstract class PessoaDTO {
 	
-	@NotEmpty
 	private String matricula;
-	@NotEmpty
 	private String nome;
-	@Email
 	private String email;
 
 	public String getMatricula() {

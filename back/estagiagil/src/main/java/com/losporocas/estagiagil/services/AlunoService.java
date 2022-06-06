@@ -32,14 +32,7 @@ public class AlunoService {
 	
 	public Aluno findByMatricula(String matricula) throws ObjectNotFoundException {
 
-		/*
-		 * Requisito apresentado na aula 72: somente um admin ou o próprio cliente pode
-		 * ver seus dados
-		 */
-		//UserSS user = UserService.authenticated();
-		//if (user == null || !user.hasHole(Perfil.ADMIN) && !id.equals(user.getId())) {
-		//	throw new AuthorizationException("Acesso negado");
-		//}
+	
 
 		Optional<Aluno> obj = alunoRepository.findByMatricula(matricula);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -50,8 +43,8 @@ public class AlunoService {
 	@Transactional
 	public Aluno insert(Aluno obj) {
 		obj.setId(null);
-		obj = alunoRepository.save(obj);
-		return obj;
+		return alunoRepository.save(obj);
+		
 	}
 	
 	public Aluno update(Aluno obj) throws ObjectNotFoundException {
@@ -61,9 +54,12 @@ public class AlunoService {
 	}
 
 	private void updateData(Aluno newObj, Aluno obj) {
-		// TODO Auto-generated method stub
-		
+		newObj.setEstagiando(obj.isEstagiando());
+		newObj.setPeriodo(obj.getPeriodo());
 	}
 
+	public Aluno salvar(Aluno a) {
+		return alunoRepository.save(a);
+	}
 
 }

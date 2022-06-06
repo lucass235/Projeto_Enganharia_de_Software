@@ -36,18 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private JWTUtil jwtUtil;
 	
 	private static final String[] PUBLIC_MATCHERS = {
-		"/h2/**","/login**"
+		"/h2/**","/login**", "/"
 	};
 	
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			"/home/**",
 			"/alunos/**"
-			//lembra que tu tirou o /coordenadores**, wesllen
 	};
 
 	@Override
 	protected AuthenticationManager authenticationManager() throws Exception {
-		// TODO Auto-generated method stub
 		return super.authenticationManager();
 	}
 
@@ -63,12 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
-		.anyRequest().authenticated();
-	//	http.authorizeRequests().antMatchers(HttpMethod.GET, "/coordenador**").hasAnyAuthority("ROLE_COORDENADOR");
-	   // http.authorizeRequests().antMatchers(HttpMethod.POST, "/coordenador**").hasAnyAuthority("ROLE_COORDENADOR");
-		//http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
-		
-		
+		.anyRequest().authenticated();		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		
@@ -79,7 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	CorsConfigurationSource corsConfigurationSource() {
 	 final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-     //se liga que pode dar erro aqui
      return source;
 	}
 	

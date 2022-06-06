@@ -33,7 +33,7 @@ public class Aluno extends Pessoa{
 	private Coordenador coordenador;
 	
 	public Aluno() {
-		addPerfil(Permissoes.ALUNO);
+		this.coordenador = getCoordenador();
 	}
 
 	public Set <Permissoes> getPermissoes() {
