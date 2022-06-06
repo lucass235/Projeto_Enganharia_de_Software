@@ -1,0 +1,69 @@
+.navbar{
+ position: relative;
+ background-color: black;
+ height: 60px;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ color: #fff;
+}
+
+.navbar-options{
+ margin: 0;
+ font-weight: 700;
+ font-size: 24px;
+ display: flex;
+ margin-right: 10rem;
+}
+
+.navbar-buttons{
+ display: flex;
+}
+
+.navbar-button {
+ margin: 0.6rem;
+ text-transform: uppercase;
+ padding: 0.3rem;
+}
+
+.logo h1 {
+ margin: 0;
+ font-weight: 700;
+ font-size: 24px;
+ margin-left: 10rem;
+}
+
+.logout-option{
+ margin-left: 1rem;
+}
+
+.profile-option:hover{
+ cursor: pointer;
+}
+
+.logout-option:hover{
+ cursor: pointer;
+}
+
+.student-profile-button{
+ text-decoration: none;
+ color: #fff;
+}
+
+.jobs-button{
+ text-decoration: none;
+ color: #fff;
+ padding: 0.3rem;
+}
+
+.jobs-button:hover{
+ background-color: #fff;
+ color: #010101;
+ cursor: pointer;
+}
+
+.logout-button{
+ text-decoration: none;
+ color: #fff;
+ padding: 0.3rem;
+}

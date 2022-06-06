@@ -1,0 +1,62 @@
+.register-container{
+ display: block;
+ justify-content: center;
+ align-items: center;
+}
+
+.register-body{
+width: 10rem;
+height: max-content;
+background-color: #ebebeb;
+margin: auto;
+padding: 1rem 5rem;
+margin-top: 1rem;
+border-radius: 1rem;
+box-shadow: 7px 8px rgba(0,0,0,0.5);
+}
+
+.register-form{
+ font-family: Roboto, sans-serif;
+ font-size: 1.1rem;
+ text-align: center;
+}
+
+.register-body-name{
+font-weight: bold;
+font-size: 1.6em;
+}
+
+.form-field{
+display: inline-block;
+padding: 0.5rem;
+margin-bottom: 20px;
+}
+
+.form-error{
+display: block;
+color: rgb(237, 67, 55);
+font-size: 0.8rem;
+font-weight: bold;
+}
+
+.register-button{
+padding: 0.3rem;
+margin-top: 0.3rem;
+font-family: Roboto, sans-serif;
+font-size: 1rem;
+background-color: #000;
+color: #ebebeb;
+}
+
+.register-button:hover{
+ background-color: #222222;
+ color: #ffffff;
+ cursor: pointer;
+}
+
+.register-header-text h1{
+margin: 0;
+font-weight: 700;
+font-size: 2rem;
+margin-left: 10.5rem;
+}
