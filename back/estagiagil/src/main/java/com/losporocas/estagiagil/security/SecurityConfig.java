@@ -41,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			"/home/**",
-			"/alunos/**",
-			"/coordenador/**"
+			"/alunos/**"
+			//lembra que tu tirou o /coordenadores**, wesllen
 	};
 
 	@Override
@@ -64,7 +64,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		.anyRequest().authenticated();
+	//	http.authorizeRequests().antMatchers(HttpMethod.GET, "/coordenador**").hasAnyAuthority("ROLE_COORDENADOR");
+	   // http.authorizeRequests().antMatchers(HttpMethod.POST, "/coordenador**").hasAnyAuthority("ROLE_COORDENADOR");
+		//http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		
+		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
+		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
