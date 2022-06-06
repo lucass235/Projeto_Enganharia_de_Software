@@ -65,14 +65,7 @@ public class CoordenadorController {
 	@PostMapping(value = "/{matricula}/alunos")
 	public ResponseEntity salvar(@RequestBody NewAlunoDTO novo, @PathVariable String matricula) throws ObjectNotFoundException {
 		Aluno aluno = new Aluno();
-		aluno.setEmail(novo.getEmail());
-		aluno.setSenha(novo.getSenha());
-		aluno.setPeriodo(novo.getPeriodo());
-		aluno.setMatricula(novo.getMatricula());
-		aluno.setNome(novo.getNome());
-		
-		Coordenador c = cs.findCoordenadorByMatricula(matricula);
-		
+		Coordenador c = cs.findCoordenadorByMatricula(aluno, novo, matricula);
 		aluno.setCoordenador(c);
 		try {
 			as.salvar(aluno);

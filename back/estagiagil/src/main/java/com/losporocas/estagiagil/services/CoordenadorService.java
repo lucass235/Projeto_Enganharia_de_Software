@@ -38,9 +38,14 @@ public class CoordenadorService {
 				"Objeto não encontrado! Id: " + matricula));
 	}
 	
-	public Coordenador findCoordenadorByMatricula(String matricula) throws ObjectNotFoundException {
-
+	public Coordenador findCoordenadorByMatricula(Aluno aluno, NewAlunoDTO novo, String matricula) throws ObjectNotFoundException {
+		aluno.setEmail(novo.getEmail());
+		aluno.setSenha(new BCryptPasswordEncoder().encode(novo.getSenha()));
+		aluno.setPeriodo(novo.getPeriodo());
+		aluno.setMatricula(novo.getMatricula());
+		aluno.setNome(novo.getNome());
 		Optional<Coordenador> obj = coordenadorRepository.findByMatricula(matricula);
+		//aluno.setCoordenador(obj);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + matricula));
 	}

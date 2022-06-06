@@ -1,8 +1,5 @@
 package com.losporocas.estagiagil.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
 public abstract class PessoaDTO {
 	
 	private String matricula;
