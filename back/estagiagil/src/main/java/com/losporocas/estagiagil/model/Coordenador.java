@@ -23,15 +23,6 @@ public class Coordenador extends Pessoa{
 	@OneToMany (mappedBy = "coordenador")
 	private List<Aluno> alunos;
 
-	public Coordenador() {
-		super();
-	}
-
-	public Coordenador(String area) {
-		super();
-		this.area = area;
-	}
-
 	public String getArea() {
 		return area;
 	}

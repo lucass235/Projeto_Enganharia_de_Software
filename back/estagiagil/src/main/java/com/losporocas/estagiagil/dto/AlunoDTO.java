@@ -4,17 +4,9 @@ public class AlunoDTO extends PessoaDTO {
 
 	private int periodo;
 
-	public boolean estagiando;
+	private boolean estagiando;
 
-	public AlunoDTO() {
-		super();
-	}
-	
-	public AlunoDTO(Long id, String matricula, String nome, String email, int periodo, boolean estagiando) {
-		super(id, matricula, nome, email);
-		this.periodo = periodo;
-		this.estagiando = estagiando;
-	}
+	private String nomeCoordenador;
 
 	public int getPeriodo() {
 		return periodo;
@@ -32,5 +24,13 @@ public class AlunoDTO extends PessoaDTO {
 		this.estagiando = estagiando;
 	}
 
+	public String getNomeCoordenador() {
+		return nomeCoordenador;
+	}
 
+	public void setNomeCoordenador(String nomeCoordenador) {
+		this.nomeCoordenador = nomeCoordenador;
+	}
+
+	
 }

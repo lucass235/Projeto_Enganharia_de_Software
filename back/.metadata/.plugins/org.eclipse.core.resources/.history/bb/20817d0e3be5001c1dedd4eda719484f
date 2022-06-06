@@ -1,0 +1,25 @@
+package com.losporocas.estagiagil.dto;
+
+public class CoordenadorDTO extends PessoaDTO{
+
+	private String area;
+
+	public CoordenadorDTO (){
+		super();
+	}
+	
+	public CoordenadorDTO(String matricula, String nome, String email, String area) {
+		super(matricula, nome, email);
+		this.area = area;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+	
+	
+}

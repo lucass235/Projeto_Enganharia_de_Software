@@ -25,17 +25,6 @@ public class Aluno extends Pessoa{
 	@JoinColumn(name = "coordenador_id")
 	private Coordenador coordenador;
 
-	public Aluno() {
-		super();
-	}
-
-	public Aluno(Long id, String matricula, String nome, String email, String senha,int periodo, boolean estagiando, Coordenador coordenador) {
-		super(id, matricula, nome, email, senha);
-		this.periodo = periodo;
-		this.estagiando = estagiando;
-		this.coordenador = coordenador;
-	}
-
 	public int getPeriodo() {
 		return periodo;
 	}

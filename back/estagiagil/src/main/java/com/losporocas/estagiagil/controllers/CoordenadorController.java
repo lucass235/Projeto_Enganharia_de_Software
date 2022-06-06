@@ -3,6 +3,7 @@ package com.losporocas.estagiagil.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,34 +15,42 @@ import com.losporocas.estagiagil.dto.AlunoDTO;
 import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.model.Coordenador;
+import com.losporocas.estagiagil.repositories.AlunoRepository;
 import com.losporocas.estagiagil.repositories.CoordenadorRepository;
+import com.losporocas.estagiagil.services.AlunoService;
+import com.losporocas.estagiagil.services.CoordenadorService;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/coordenador")
 public class CoordenadorController {
 
 	@Autowired
-	private CoordenadorRepository repository;
+	private AlunoService as;
+	
+	//lembrar de tirar dps
+	@Autowired
+	private AlunoRepository repository;
+	
 	@Autowired
 	private AlunoDTOMapper alunoDTOMapper;
-	
+
+	@GetMapping
+	public ResponseEntity<List<AlunoDTO>> findAll(){
+		List<Aluno> result = repository.findAll();
+		List<AlunoDTO> aDto = alunoDTOMapper.toAlunoDTO(result);
+		return ResponseEntity.ok().body(aDto);
+	}
+
 	@GetMapping(value = "/{matricula}")
-	public List<AlunoDTO> findAll(@PathVariable String matricula){
-		Coordenador result = repository.findByMatricula(matricula);		
-		return alunoDTOMapper.toAlunoDTO(result.getAlunos());
+	public ResponseEntity<AlunoDTO> findByMatricula(@PathVariable String matricula) throws ObjectNotFoundException{
+		Aluno result = as.findByMatricula(matricula);
+		AlunoDTO aDto = alunoDTOMapper.toAlunoDTO(result);
+		return ResponseEntity.ok().body(aDto);
 	}
-	/*
-	@PostMapping(value = "/{matricula}")
-	public List<AlunoDTO> findAll(@PathVariable String matricula){
-		Coordenador result = repository.findByMatricula(matricula);		
-		return alunoDTOMapper.toAlunoDTO(result.getAlunos());
-	}
-	*/
 	
-	/*
-	@DeleteMapping(value = "/{matricula}/{matricula}")
-	public List<AlunoDTO> deleteAluno(@PathVariable String matricula){
-		Coordenador result = repository.deleteByMatricula(matricula);		
-		return alunoDTOMapper.deleteToAlunoDTO(result.getAlunos(), matricula);
-	}*/
+	
+	
+	
 }

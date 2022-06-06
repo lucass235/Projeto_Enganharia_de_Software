@@ -15,13 +15,14 @@ public class AlunoDTOMapper {
 		return alunos.stream().map(this::toAlunoDTO).toList();
 	}
 	
-	private AlunoDTO toAlunoDTO(Aluno aluno) {
+	public AlunoDTO toAlunoDTO(Aluno aluno) {
 		AlunoDTO a = new AlunoDTO();
 		a.setMatricula(aluno.getMatricula());
 		a.setEmail(aluno.getEmail());
 		a.setNome(aluno.getNome());
 		a.setPeriodo(aluno.getPeriodo());
 		a.setEstagiando(aluno.isEstagiando());
+		a.setNomeCoordenador(aluno.getCoordenador().getNome());
 		return a;
 	}
 	

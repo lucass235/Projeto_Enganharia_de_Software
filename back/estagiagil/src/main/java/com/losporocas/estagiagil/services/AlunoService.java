@@ -30,32 +30,22 @@ public class AlunoService {
 
 	
 	
-	
-	
-	public Aluno fromDTO(AlunoDTO objDto) {
-		return new Aluno(objDto.getId(), objDto.getMatricula(), objDto.getNome(), objDto.getEmail(), null, objDto.getPeriodo(), objDto.isEstagiando(), null);
-	}
-	
-	public Aluno fromDTO(NewAlunoDTO objDto) {
-		Aluno a = new Aluno(null, objDto.getMatricula(), objDto.getNome(), objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getPeriodo(), objDto.isEstagiando(), null);
-	
-		return a;
-	}
-	
-	public Aluno find(String matricula) {
+	public Aluno findByMatricula(String matricula) throws ObjectNotFoundException {
 
 		/*
 		 * Requisito apresentado na aula 72: somente um admin ou o próprio cliente pode
 		 * ver seus dados
 		 */
-	//	UserSS user = UserService.authenticated();
+		//UserSS user = UserService.authenticated();
 		//if (user == null || !user.hasHole(Perfil.ADMIN) && !id.equals(user.getId())) {
 		//	throw new AuthorizationException("Acesso negado");
 		//}
 
 		Optional<Aluno> obj = alunoRepository.findByMatricula(matricula);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado!"));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + matricula));
 	}
+	
 	
 	@Transactional
 	public Aluno insert(Aluno obj) {
@@ -64,7 +54,7 @@ public class AlunoService {
 		return obj;
 	}
 	
-	public Aluno update(Aluno obj) {
+	public Aluno update(Aluno obj) throws ObjectNotFoundException {
 		Aluno newObj = findByMatricula(obj.getMatricula());
 		updateData(newObj, obj);
 		return alunoRepository.save(newObj);

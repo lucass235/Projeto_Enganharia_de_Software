@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.repositories.AlunoRepository;
 import com.losporocas.estagiagil.services.AlunoService;
+
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/alunos")
@@ -30,15 +33,17 @@ public class AlunoController {
 	private AlunoDTOMapper alunoDTOMapper;
 
 	@GetMapping
-	public List<AlunoDTO> findAll(){
+	public ResponseEntity<List<AlunoDTO>> findAll(){
 		List<Aluno> result = repository.findAll();
-		return alunoDTOMapper.getAlunoDTOList(result);
+		List<AlunoDTO> aDto = alunoDTOMapper.toAlunoDTO(result);
+		return ResponseEntity.ok().body(aDto);
 	}
 
 	@GetMapping(value = "/{matricula}")
-	public AlunoDTO findAll(@PathVariable String matricula){
-		List<Aluno> result = repository.findByMatricula(matricula);
-		return alunoDTOMapper.byMatriculaAlunoDTO(result, matricula);
+	public ResponseEntity<AlunoDTO> findByMatricula(@PathVariable String matricula) throws ObjectNotFoundException{
+		Aluno result = as.findByMatricula(matricula);
+		AlunoDTO aDto = alunoDTOMapper.toAlunoDTO(result);
+		return ResponseEntity.ok().body(aDto);
 	}
 	
 
