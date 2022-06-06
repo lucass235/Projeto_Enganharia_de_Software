@@ -1,16 +1,11 @@
 package com.losporocas.estagiagil.services;
 
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
-
-import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.model.Coordenador;
-import com.losporocas.estagiagil.repositories.AlunoRepository;
 import com.losporocas.estagiagil.repositories.CoordenadorRepository;
 import com.losporocas.estagiagil.security.UserSS;
 

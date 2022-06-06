@@ -3,10 +3,8 @@ package com.losporocas.estagiagil.mapper;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-
 import com.losporocas.estagiagil.dto.AlunoDTO;
 import com.losporocas.estagiagil.dto.CoordenadorDTO;
-import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.model.Coordenador;
 

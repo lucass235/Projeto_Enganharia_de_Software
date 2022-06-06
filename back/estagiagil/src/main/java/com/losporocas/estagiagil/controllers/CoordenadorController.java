@@ -1,14 +1,9 @@
 package com.losporocas.estagiagil.controllers;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,13 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.losporocas.estagiagil.dto.AlunoDTO;
-import com.losporocas.estagiagil.dto.CoordenadorDTO;
 import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
 import com.losporocas.estagiagil.model.Coordenador;
 import com.losporocas.estagiagil.repositories.AlunoRepository;
-import com.losporocas.estagiagil.repositories.CoordenadorRepository;
 import com.losporocas.estagiagil.services.AlunoService;
 import com.losporocas.estagiagil.services.CoordenadorService;
 import java.net.URI;

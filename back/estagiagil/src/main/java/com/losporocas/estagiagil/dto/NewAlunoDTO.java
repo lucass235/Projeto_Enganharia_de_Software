@@ -6,10 +6,11 @@ import com.losporocas.estagiagil.model.Coordenador;
 
 public class NewAlunoDTO extends NewPessoaDTO{
 	
+	@NotEmpty
 	private int periodo;
-
+	@NotEmpty
 	private boolean estagiando;
-	
+	@NotEmpty
 	private Coordenador coordenador;
 	
 	

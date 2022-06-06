@@ -35,7 +35,6 @@ public abstract class Pessoa implements UserDetails{
 	private String email;
 	@NotEmpty
 	@Column
-	//@JsonIgnore
 	private String senha;
 		
 	public String getSenha() {
@@ -76,8 +75,4 @@ public abstract class Pessoa implements UserDetails{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
-	
-
 }
