@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.losporocas.estagiagil.enums.Permissoes;
 
@@ -28,7 +29,7 @@ public class Coordenador extends Pessoa{
 	@Column
 	private String area;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@Column
 	@OneToMany (mappedBy = "coordenador")
 	private List<Aluno> alunos= new ArrayList();

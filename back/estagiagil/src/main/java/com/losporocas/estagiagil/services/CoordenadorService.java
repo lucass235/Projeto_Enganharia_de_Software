@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.losporocas.estagiagil.dto.AlunoDTO;
 import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.model.Aluno;
+import com.losporocas.estagiagil.model.Coordenador;
 import com.losporocas.estagiagil.repositories.AlunoRepository;
 import com.losporocas.estagiagil.repositories.CoordenadorRepository;
 
@@ -32,38 +33,15 @@ public class CoordenadorService {
 	
 	public Aluno findByMatricula(String matricula) throws ObjectNotFoundException {
 
-		/*
-		 * Requisito apresentado na aula 72: somente um admin ou o próprio cliente pode
-		 * ver seus dados
-		 */
-		//UserSS user = UserService.authenticated();
-		//if (user == null || !user.hasHole(Perfil.ADMIN) && !id.equals(user.getId())) {
-		//	throw new AuthorizationException("Acesso negado");
-		//}
-
 		Optional<Aluno> obj = alunoRepository.findByMatricula(matricula);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + matricula));
 	}
 	
-	
-	@Transactional
-	public Aluno insert(Aluno obj) {
-		obj.setId(null);
-		obj = alunoRepository.save(obj);
-		return obj;
-	}
-	
-	public Aluno update(Aluno obj) throws ObjectNotFoundException {
-		Aluno newObj = findByMatricula(obj.getMatricula());
-		updateData(newObj, obj);
-		return alunoRepository.save(newObj);
-	}
+	public Coordenador findCoordenadorByMatricula(String matricula) throws ObjectNotFoundException {
 
-	private void updateData(Aluno newObj, Aluno obj) {
-		// TODO Auto-generated method stub
-		
+		Optional<Coordenador> obj = coordenadorRepository.findByMatricula(matricula);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + matricula));
 	}
-	
-	
 }

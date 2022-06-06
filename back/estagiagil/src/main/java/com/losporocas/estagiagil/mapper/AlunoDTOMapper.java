@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.losporocas.estagiagil.dto.AlunoDTO;
+import com.losporocas.estagiagil.dto.CoordenadorDTO;
 import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.model.Aluno;
+import com.losporocas.estagiagil.model.Coordenador;
 
 @Component
 public class AlunoDTOMapper {
@@ -27,23 +29,6 @@ public class AlunoDTOMapper {
 		return a;
 	}
 	
-	public List<AlunoDTO> getAlunoDTOList(List<Aluno> alunos){
-		return alunos.stream().map(this::toAlunoDTO).toList();
-	}
-	
-	public Aluno fromDTO(NewAlunoDTO aluno) {
-		Aluno a = new Aluno();
-		a.setId(null);
-		a.setMatricula(aluno.getMatricula());
-		a.setEmail(aluno.getEmail());
-		a.setNome(aluno.getNome());
-		a.setPeriodo(aluno.getPeriodo());
-		a.setSenha(aluno.getSenha());
-		//a.setCoordenador(1);
-		
-		return a;
-	}
-	
 	public Aluno fromDTO(AlunoDTO aluno) {
 		Aluno a = new Aluno();
 		a.setEstagiando(aluno.isEstagiando());
@@ -52,6 +37,12 @@ public class AlunoDTOMapper {
 		return a;
 	}
 	
-	
+	public CoordenadorDTO toCoordenadorDTO(Coordenador c) {
+		CoordenadorDTO a = new CoordenadorDTO();
+		a.setMatricula(c.getMatricula());
+		a.setEmail(c.getEmail());
+		a.setNome(c.getNome());
+		return a;
+	}
 	
 }

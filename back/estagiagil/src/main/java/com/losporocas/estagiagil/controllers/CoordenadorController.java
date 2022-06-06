@@ -1,6 +1,7 @@
 package com.losporocas.estagiagil.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.losporocas.estagiagil.dto.AlunoDTO;
+import com.losporocas.estagiagil.dto.CoordenadorDTO;
 import com.losporocas.estagiagil.dto.NewAlunoDTO;
 import com.losporocas.estagiagil.mapper.AlunoDTOMapper;
 import com.losporocas.estagiagil.model.Aluno;
@@ -37,7 +39,9 @@ public class CoordenadorController {
 	@Autowired
 	private AlunoService as;
 	
-	//lembrar de tirar dps
+	@Autowired
+	private CoordenadorService cs;
+	
 	@Autowired
 	private AlunoRepository repository;
 	
@@ -58,31 +62,18 @@ public class CoordenadorController {
 		return ResponseEntity.ok().body(aDto);
 	}
 	
-	//@PostMapping(value = "/alunos")
-	//public Aluno novo(@RequestBody Aluno novo) {
-	//	return repository.save(novo);
-	//}
-	//@PostMapping(value = "/alunos")
-	//	public void insert(@Valid @RequestBody NewAlunoDTO novo) {
-	//		Aluno obj = alunoDTOMapper.fromDTO(novo);
-	//		repository.save(obj);
-	//	}
-	
-	//@PostMapping(value = "/alunos")
-	//public ResponseEntity<Void> insert(@RequestBody Aluno novo) {
-	//	novo = as.insert(novo);
-	//	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matricula}").buildAndExpand(novo.getMatricula()).toUri();
-	//	return ResponseEntity.created(uri).build();
-	//}
-	
-	@PostMapping(value = "/alunos")
-	public ResponseEntity salvar(@RequestBody NewAlunoDTO novo) {
+	@PostMapping(value = "/{matricula}/alunos")
+	public ResponseEntity salvar(@RequestBody NewAlunoDTO novo, @PathVariable String matricula) throws ObjectNotFoundException {
 		Aluno aluno = new Aluno();
 		aluno.setEmail(novo.getEmail());
 		aluno.setSenha(novo.getSenha());
 		aluno.setPeriodo(novo.getPeriodo());
 		aluno.setMatricula(novo.getMatricula());
 		aluno.setNome(novo.getNome());
+		
+		Coordenador c = cs.findCoordenadorByMatricula(matricula);
+		
+		aluno.setCoordenador(c);
 		try {
 			as.salvar(aluno);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matricula}").buildAndExpand(novo.getMatricula()).toUri();
@@ -93,12 +84,23 @@ public class CoordenadorController {
 			
 	}
 	
-	@PutMapping(value = "/alunos/{matricula}")
-	public ResponseEntity<Void> update(@Valid @RequestBody AlunoDTO aDTO, @PathVariable String matricula) throws ObjectNotFoundException {
-		Aluno a = alunoDTOMapper.fromDTO(aDTO);
-		a.setMatricula(matricula); 
-		a = as.update(a);
-		return ResponseEntity.noContent().build();
+	@PutMapping("/alunos/{matricula}")
+	public ResponseEntity atualizar(
+			@PathVariable String matricula,
+			@RequestBody AlunoDTO aDTO) throws ObjectNotFoundException {
+		
+		Aluno alunoExistente = as.findByMatricula(matricula);
+		if(alunoExistente==null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		alunoExistente.setEstagiando(aDTO.isEstagiando());
+		alunoExistente.setPeriodo(aDTO.getPeriodo());
+		repository.save(alunoExistente);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matricula}").buildAndExpand(aDTO.getMatricula()).toUri();
+		return ResponseEntity.created(uri).build();
+		//return ResponseEntity.noContent().build();
+		
 	}
 	
 }

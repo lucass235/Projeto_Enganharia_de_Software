@@ -32,8 +32,6 @@ public class AlunoService {
 	
 	public Aluno findByMatricula(String matricula) throws ObjectNotFoundException {
 
-	
-
 		Optional<Aluno> obj = alunoRepository.findByMatricula(matricula);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + matricula));
