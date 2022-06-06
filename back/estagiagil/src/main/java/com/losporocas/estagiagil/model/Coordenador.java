@@ -1,11 +1,18 @@
 package com.losporocas.estagiagil.model;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.losporocas.estagiagil.enums.Permissoes;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,6 +29,23 @@ public class Coordenador extends Pessoa{
 	@Column
 	@OneToMany (mappedBy = "coordenador")
 	private List<Aluno> alunos;
+	
+	public Coordenador() {
+		addPerfil(Permissoes.COORDENADOR);
+	}
+
+	public Set <Permissoes> getPermissoes() {
+		return permissoes.stream().map(x -> Permissoes.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Permissoes perfil) {
+		permissoes.add(perfil.getCod());
+	}
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERMISSOES")
+	private Set<Integer> permissoes = new HashSet<>();
+	
 
 	public String getArea() {
 		return area;

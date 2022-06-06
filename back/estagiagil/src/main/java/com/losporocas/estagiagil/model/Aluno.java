@@ -1,13 +1,20 @@
 package com.losporocas.estagiagil.model;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.losporocas.estagiagil.enums.Permissoes;
+
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -24,6 +31,22 @@ public class Aluno extends Pessoa{
 	@ManyToOne
 	@JoinColumn(name = "coordenador_id")
 	private Coordenador coordenador;
+	
+	public Aluno() {
+		addPerfil(Permissoes.ALUNO);
+	}
+
+	public Set <Permissoes> getPermissoes() {
+		return permissoes.stream().map(x -> Permissoes.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Permissoes perfil) {
+		permissoes.add(perfil.getCod());
+	}
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERMISSOES")
+	private Set<Integer> permissoes = new HashSet<>();
 
 	public int getPeriodo() {
 		return periodo;

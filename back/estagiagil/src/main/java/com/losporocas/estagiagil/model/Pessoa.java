@@ -35,7 +35,7 @@ public abstract class Pessoa implements UserDetails{
 	private String email;
 	@NotEmpty
 	@Column
-	@JsonIgnore
+	//@JsonIgnore
 	private String senha;
 		
 	public String getSenha() {
