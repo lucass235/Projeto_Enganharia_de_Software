@@ -1,0 +1,9 @@
+.edit-button-table{
+ font-size: 1.5rem;
+ color: #000;
+}
+
+.edit-button-table:hover{
+ cursor: pointer;
+ color: rgb(97, 97, 97);
+}

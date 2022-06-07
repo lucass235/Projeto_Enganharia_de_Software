@@ -1,0 +1,19 @@
+.container-edit-form{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin-top: 4rem;
+}
+
+.register-button{
+ margin-top: 1rem;
+}
+
+.working-button{
+ padding: 0.5rem;
+}
+
+.working-button:hover{
+ cursor: pointer;
+}

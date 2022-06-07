@@ -1,0 +1,27 @@
+.list-header-text h1 {
+ margin: 0;
+ font-weight: 700;
+ font-size: 2rem;
+ margin-left: 10.5rem;
+ margin-top: 1rem;
+}
+
+.add-button{
+ color: rgb(40, 207, 68);
+ font-size: 2rem;
+ position: fixed;
+ right: 5rem;
+ bottom: 10rem;
+ border-radius: 1.5rem;
+ text-align: center;
+}
+
+.add-button:hover{
+ color: rgb(33, 177, 57);
+ cursor: pointer;
+ background-color: black;
+}
+
+.close-button{
+ margin-left: 17rem;
+}
