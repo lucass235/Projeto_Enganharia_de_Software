@@ -20,11 +20,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Plataforma de gerencia de estágio, onde coordenador e aluno podem aceesar todos os requesitos para gerenciar e buscar estágio.
 
+## 🎞 Slides
+
+Link: (https://www.canva.com/design/DAFC62Fq90Q/rJ5WEtFL_e5_w0udNkZ4VQ/view?utm_content=DAFC62Fq90Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton).
+
 ## 🚀 Protótipo
 
 Você pode testar e usar o [desse link](https://estagiagil.vercel.app/).
 
-## 🚀 Como executar
+## 🚀 Como executar o código localmente
 
 - Clone o repositório
 - Instale o [Node.js](https://nodejs.org/en/download/)
