@@ -29,10 +29,12 @@ export function LoginPage() {
     <div className="container">
       <div className="login-container">
         <div className="login-container-header">
+
           <h1>Login</h1>
         </div>
         <div className="login-body">
           <span className="login-body-text">Form. de login</span>
+          
           <Form ref={formRef} onSubmit={handleSubmit} className="login-form">
             <Input className="form-field" name="email" placeholder="email" />
             <Input
@@ -41,9 +43,11 @@ export function LoginPage() {
               type="password"
               placeholder="senha"
             />
-            <button type="submit" className="login-button">
+
+            <a href="/list" type="submit" className="login-button">
               Entrar
-            </button>
+            </a>
+
           </Form>
         </div>
       </div>
