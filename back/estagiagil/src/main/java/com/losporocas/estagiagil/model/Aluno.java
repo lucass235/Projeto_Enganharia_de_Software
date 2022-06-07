@@ -1,19 +1,28 @@
 package com.losporocas.estagiagil.model;
 
-import javax.persistence.Column;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import com.losporocas.estagiagil.enums.Permissoes;
+
+
+import org.springframework.security.core.GrantedAuthority;
 
 
 @Entity
 @Table(name = "alunos") 
 public class Aluno extends Pessoa{
 	
-	@Column
-	private String statusAluno;
 	@Column
 	private int periodo;
 	@Column
@@ -22,26 +31,22 @@ public class Aluno extends Pessoa{
 	@ManyToOne
 	@JoinColumn(name = "coordenador_id")
 	private Coordenador coordenador;
-
+	
 	public Aluno() {
-		super();
+		this.coordenador = getCoordenador();
 	}
 
-	public Aluno(String statusAluno, int periodo, boolean estagiando, Coordenador coordenador) {
-		super();
-		this.statusAluno = statusAluno;
-		this.periodo = periodo;
-		this.estagiando = estagiando;
-		this.coordenador = coordenador;
+	public Set <Permissoes> getPermissoes() {
+		return permissoes.stream().map(x -> Permissoes.toEnum(x)).collect(Collectors.toSet());
 	}
-
-	public String getStatusAluno() {
-		return statusAluno;
+	
+	public void addPerfil(Permissoes perfil) {
+		permissoes.add(perfil.getCod());
 	}
-
-	public void setStatusAluno(String statusAluno) {
-		this.statusAluno = statusAluno;
-	}
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERMISSOES")
+	private Set<Integer> permissoes = new HashSet<>();
 
 	public int getPeriodo() {
 		return periodo;
@@ -65,6 +70,48 @@ public class Aluno extends Pessoa{
 
 	public void setCoordenador(Coordenador coordenador) {
 		this.coordenador = coordenador;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.getSenha();
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.getMatricula();
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -5,37 +5,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @MappedSuperclass
-public abstract class Pessoa {
+public abstract class Pessoa implements UserDetails{
 	
 	@Id
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 	
 	@NotNull
+	@NotEmpty
 	@Column(unique=true)
 	private String matricula;
 	@Column
+	@NotEmpty
 	private String nome;
-	@Column
+	@Column(unique = true)
+	@NotEmpty
+	@Email
 	private String email;
-	
-	public Pessoa() {
-		super();
+	@NotEmpty
+	@Column
+	private String senha;
+		
+	public String getSenha() {
+		return senha;
 	}
 
-	public Pessoa(Long id, String matricula, String nome, String email) {
-		super();
-		this.id = id;
-		this.matricula = matricula;
-		this.nome = nome;
-		this.email = email;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -67,8 +75,4 @@ public abstract class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
-	
-
 }

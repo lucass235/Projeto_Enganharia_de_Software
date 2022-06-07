@@ -1,16 +1,10 @@
 package com.losporocas.estagiagil.dto;
 
 public abstract class PessoaDTO {
-
-	private String matricula;
-
-	private String nome;
-
-	private String email;
 	
-	public PessoaDTO() {
-		super();
-	}
+	private String matricula;
+	private String nome;
+	private String email;
 
 	public String getMatricula() {
 		return matricula;
@@ -35,4 +29,5 @@ public abstract class PessoaDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 }

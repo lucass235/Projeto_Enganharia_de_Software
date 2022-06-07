@@ -1,9 +1,0 @@
-INSERT INTO coordenadores(nome, email, area, matricula) VALUES ('Frodo', 'anel@gmail.com', 'hobbit', '2017202502');
-INSERT INTO coordenadores(nome, email, area, matricula) VALUES ('Sam', 'lembas@gmail.com', 'hobbit','2017202501');
-
-
-
-
-
---INSERT INTO alunos(nome, email, estagiando, periodo, status_aluno, matricula) VALUES ('Wes', 'wessan@gmail.com', false, 5, 'Buscando estágio','2020111052');
---INSERT INTO alunos(nome, email, estagiando, periodo, status_aluno, coordenador_id, matricula) VALUES ('Sew', 'wessew@gmail.com', true, 5, 'Buscando estágio', '2017202502', '2020111051');
