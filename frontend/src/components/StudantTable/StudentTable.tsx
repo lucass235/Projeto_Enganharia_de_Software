@@ -46,15 +46,12 @@ const rows = [
   createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '3', 'Estagiando', 'Léuson Mário Pedro da Silva'),
   createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '5', 'Estagiando', 'Léuson Mário Pedro da Silva'),
   createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '10', 'Estagiando', 'Léuson Mário Pedro da Silva'),
-  createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '1', 'Estagiando', 'Léuson Mário Pedro da Silva'),
-  createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '5', 'Estagiando', 'Léuson Mário Pedro da Silva'),
-  createData('2020109733', 'Marcos Fellipe Andrade da Silva', 'marcos.2020109733@unicap.br', '7', 'Estagiando', 'Léuson Mário Pedro da Silva'),
 ];
 
 export function StudentTable() {
  return (
-  <TableContainer sx={{maxWidth: 1000, mx: 55, mt: 5}} component={Paper} className="table-container">
-    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+  <TableContainer sx={{maxWidth: 900, mx: 55, mt: 5}} component={Paper} className="table-container">
+    <Table sx={{ minWidth: 600 }} aria-label="customized table">
       <TableHead>
         <TableRow>
           <StyledTableCell >Matricula</StyledTableCell>
